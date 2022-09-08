@@ -5,18 +5,24 @@ import org.example.calculator.PositiveNumber;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.servlet.*;
+import javax.servlet.GenericServlet;
+import javax.servlet.ServletException;
+import javax.servlet.ServletRequest;
+import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-@WebServlet("/calculate/genericservlet")
-public class CalculatorGenericServlet extends GenericServlet {
-    private static final Logger log = LoggerFactory.getLogger(CalculatorGenericServlet.class);
+@WebServlet("/calculate/httpservlet")
+public class CalculatorHttpServlet extends HttpServlet {
+    private static final Logger log = LoggerFactory.getLogger(CalculatorHttpServlet.class);
 
     @Override
-    public void service(ServletRequest req, ServletResponse res) throws ServletException, IOException {
-        log.info("generic servlet service");
+    protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+        log.info("http servlet service");
 
         int operand1 = Integer.parseInt(req.getParameter("operand1"));
         int operand2 = Integer.parseInt(req.getParameter("operand2"));
@@ -27,5 +33,4 @@ public class CalculatorGenericServlet extends GenericServlet {
         PrintWriter writer = res.getWriter();
         writer.println(result);
     }
-
 }

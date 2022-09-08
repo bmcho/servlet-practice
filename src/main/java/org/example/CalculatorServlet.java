@@ -23,7 +23,7 @@ public class CalculatorServlet implements Servlet {
 
     @Override
     public void service(ServletRequest req, ServletResponse res) throws ServletException, IOException {
-        log.info("service");
+        log.info("servlet service");
 
         int operand1 = Integer.parseInt(req.getParameter("operand1"));
         int operand2 = Integer.parseInt(req.getParameter("operand2"));
